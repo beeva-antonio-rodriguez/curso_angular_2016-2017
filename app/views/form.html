@@ -1,0 +1,67 @@
+<div ng-controller="FormCtrl">
+  <form name="form" class="css-form" novalidate>
+
+    <p class="form-group" ng-class='{"has-error": form.uName.$error.required}'>
+      <label for="c_name">Nombre</label>
+      <input type="text" class="form-control" id="c_name" ng-model="user.name" name="uName" required />
+      <span ng-show="form.$submitted || form.uName.$touched">
+        <span ng-show="form.uName.$error.required" class="text-danger">Es necesario rellenar el nombre</span>
+      </span>
+    </p>
+    
+    <p class="form-group">
+      <label for="c_surname1">Apellido 1</label>
+      <input type="text" class="form-control" id="c_surname1" ng-model="user.surname1" name="uSurname1" required />
+      <span ng-show="form.$submitted || form.uSurname1.$touched">
+        <span ng-show="form.uSurname1.$error.required" class="text-danger">Es necesario rellenar el apellido 1</span>
+      </span>
+    </p>
+    
+    <p class="form-group">
+      <label for="c_surname2">Apellido 2</label>
+      <input type="text" class="form-control" id="c_surname2" ng-model="user.surname2" name="uSurname2" required />
+      <span ng-show="form.$submitted || form.uSurname2.$touched">
+        <span ng-show="form.uSurname2.$error.required" class="text-danger">Es necesario rellenar el apellido 2</span>
+      </span>
+    </p>
+    
+    <p class="form-group">
+      <label for="c_email">Email</label>
+      <input type="email" class="form-control" id="c_email" ng-model="user.email" name="uEmail" required />
+      <span ng-show="form.$submitted || form.uEmail.$touched">
+        <span ng-show="form.uEmail.$error.required" class="text-danger">Es necesario rellenar el email</span>
+        <span ng-show="form.uEmail.$error.email" class="text-danger">No es un email válido</span>
+      </span>
+    </p>
+    
+    <p class="form-group">
+      <label for="c_otherEmail">Quiero añadir otro email</label>
+      <input id="c_otherEmail" type="checkbox" ng-model="user.otherEmail" name="otherEmail" />
+    </p>
+    <p class="form-group" ng-show="user.otherEmail">
+      <label for="c_email2">Email adicional</label>
+      <input type="email" class="form-control" id="c_email2" ng-model="user.email2" name="uEmail2" required />
+      <span ng-show="form.$submitted || form.uEmail2.$touched">
+        <span ng-show="form.uEmail2.$error.email" class="text-danger">No es un email válido</span>
+      </span>
+    </p>
+    
+    
+    
+    <p class="form-group">
+      <label for="c_agree">I agree</label>
+      <input id="c_agree" type="checkbox" ng-model="user.agree" name="userAgree" required />
+      <span ng-show="form.$submitted || form.userAgree.$touched">
+        <span ng-show="!user.agree" class="text-danger">Hay que aceptar</span>
+      </span>
+    </p>
+    
+
+    <p>
+    <input type="button" class="btn btn-default" ng-click="reset(form)" value="Limpiar" />
+    <input type="submit" class="btn btn-default" ng-click="update(user)" ng-show="user.agree" value="Guardar" />
+    <p>
+  </form>
+  <pre>user = {{user | json}}</pre>
+  <pre>master = {{master | json}}</pre>
+</div>
